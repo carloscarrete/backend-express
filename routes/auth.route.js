@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { login, register } = require('../controllers/auth.controller');
+const { login, register, infoUser } = require('../controllers/auth.controller');
 const { validationResultExpress } = require('../middlewares/validationResult');
 const { body } = require('express-validator');
 const router = Router();
@@ -15,6 +15,7 @@ router.post('/register', [
     })
 
 ], validationResultExpress, register);
+
 router.post('/login',
     [
         body('email', 'El formato del email no es válido').trim().isEmail().normalizeEmail(),
@@ -23,6 +24,7 @@ router.post('/login',
     validationResultExpress,
     login);
 
+router.get('/protected', infoUser);
 
 
 module.exports = router;

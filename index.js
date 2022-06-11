@@ -7,7 +7,7 @@ require('dotenv').config();
 dbConnection();
 
 app.use(express.json());
-app.use('/api/v1', require('./routes/auth.route'));
+app.use('/api/v1/auth', require('./routes/auth.route'));
 
 app.get('/', (req, res)=>{
   res.status(200).json({
