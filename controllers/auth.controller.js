@@ -3,8 +3,6 @@ const { generateToken } = require("../utils/manageToken");
 
 const login = ('/login', async (req, res) => {
 
-    console.log('Login...');
-
     const { email, password } = req.body;
     try{
         let user = await User.findOne({ email });
