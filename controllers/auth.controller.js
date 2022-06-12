@@ -47,7 +47,21 @@ const register = ('/register', async (req, res) =>{
 })
 
 const infoUser=async(req,res)=>{
-    res.json({user:"correo@correo.com"});
+    try{
+        //Con lean es para pasarlo un objeto simple y que la consulta sea más rápida
+        const user = await User.findById(req.uid).lean();
+        res.json({
+            ok: true,
+            email: user.email,
+            id: user._id
+        });
+    }catch(error){
+        console.log(error);
+        res.status(400).json({
+            ok: false,
+            message: error.message
+        })
+    }
 };
 
 
